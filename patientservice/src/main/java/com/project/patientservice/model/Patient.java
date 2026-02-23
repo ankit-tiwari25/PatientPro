@@ -18,7 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Patient extends Audit {
+public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
