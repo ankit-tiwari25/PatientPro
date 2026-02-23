@@ -21,29 +21,15 @@ import java.util.UUID;
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private UUID id;
 
     @NotNull
-    @Column(unique = true)
-    private UUID patientRefId;
-
-    @NotNull
-    private String firstName;
-
-    @NotNull
-    private String lastName;
+    private String name;
 
     @NotNull
     @Email
     @Column(unique = true)
     private String email;
-
-    @NotNull
-    @Column(unique = true)
-    private String phoneNumber;
-
-    @NotNull
-    private Gender gender;
 
     @NotNull
     private String address;
@@ -52,6 +38,5 @@ public class Patient {
     private LocalDate dateOfBirth;
 
     @NotNull
-    @DateTimeFormat
-    private LocalDateTime registrationDate;
+    private LocalDate registeredDate;
 }
