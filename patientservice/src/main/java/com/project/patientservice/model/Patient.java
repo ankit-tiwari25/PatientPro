@@ -1,40 +1,42 @@
 package com.project.patientservice.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private UUID id;
 
     @NotNull
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID patientRefId;
-
-    @NotNull
-    private String firstName;
-
-    @NotNull
-    private String lastName;
+    private String name;
 
     @NotNull
     @Email
+    @Column(unique = true)
     private String email;
 
     @NotNull
-    private String phoneNumber;
+    private String address;
 
     @NotNull
-    @DateTimeFormat
-    private LocalDateTime registrationDate;
+    private LocalDate dateOfBirth;
+
+    @NotNull
+    private LocalDate registeredDate;
 }

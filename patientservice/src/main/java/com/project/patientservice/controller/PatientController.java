@@ -1,16 +1,26 @@
 package com.project.patientservice.controller;
 
+import com.project.patientservice.dto.response.PatientResponseDTO;
+import com.project.patientservice.service.PatientService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/api/patients")
-public class PatientController {
+import java.util.List;
 
-    @GetMapping()
-    public String sayHello() {
-        return "Hello from Patient Service!";
+@RestController
+@RequestMapping("/patients")
+public class PatientController {
+    private final PatientService patientService;
+
+    public PatientController(PatientService patientService) {
+        this.patientService = patientService;
     }
 
+    @GetMapping
+    public ResponseEntity<List<PatientResponseDTO>> getAllPatients() {
+        List<PatientResponseDTO> patients = patientService.getAllPatients();
+        return ResponseEntity.ok(patients);
+    }
 }
