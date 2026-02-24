@@ -44,7 +44,7 @@ public class PatientServiceImpl implements PatientService {
         Patient existingPatient = patientRepository.findById(uuid)
                 .orElseThrow(() -> new PatientNotFoundException("Patient not found with id: " + uuid));
 
-        if(patientRepository.existsByEmail(patientRequestDTO.getEmail())){
+        if(patientRepository.existsByEmailAndIdNot(patientRequestDTO.getEmail(), uuid)){
             throw new EmailAlreadyExistsException("Patient with email already exists.");
         }
         existingPatient.setName(patientRequestDTO.getName());
