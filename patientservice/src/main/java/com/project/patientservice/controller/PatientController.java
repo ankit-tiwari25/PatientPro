@@ -30,4 +30,10 @@ public class PatientController {
         return ResponseEntity.ok(createdPatient);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<PatientResponseDTO> updatePatient(@PathVariable String id, @Valid @RequestBody PatientRequestDTO patientRequestDTO) {
+        PatientResponseDTO updatedPatient = patientService.updatePatient(java.util.UUID.fromString(id), patientRequestDTO);
+        return ResponseEntity.ok(updatedPatient);
+    }
+
 }
