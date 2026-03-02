@@ -56,4 +56,14 @@ public class PatientServiceImpl implements PatientService {
         return toPatientResponseDTO(updatedPatient);
     }
 
+    public void deletePatient(UUID uuid){
+        patientRepository.deleteById(uuid);
+    }
+
+    public PatientResponseDTO getPatientById(UUID uuid){
+        Patient patient = patientRepository.findById(uuid)
+                .orElseThrow(() -> new PatientNotFoundException("Patient not found with id: " + uuid));
+        return toPatientResponseDTO(patient);
+    }
+
 }
