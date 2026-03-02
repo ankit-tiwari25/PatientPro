@@ -11,4 +11,6 @@ public interface PatientService {
     List<PatientResponseDTO> getAllPatients();
     PatientResponseDTO createPatient(PatientRequestDTO patientRequestDTO);
     PatientResponseDTO updatePatient(UUID uuid, @Valid PatientRequestDTO patientRequestDTO);
+    void deletePatient(UUID uuid);
+    PatientResponseDTO getPatientById(UUID uuid);
 }
